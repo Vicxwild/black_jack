@@ -1,5 +1,5 @@
 class Player
-  attr_accessor :cash, :cards, :decision
+  attr_accessor :bank, :cards, :decision
 
 
   DECISIONS = {
@@ -11,8 +11,8 @@ class Player
   def initialize(name, rules)
     @name = name
     @rules = rules
-    @cash = 100
-    @hand = []
+    @bank = 100
+    @cards = []
   end
 
   def show_cards
@@ -31,11 +31,16 @@ class Player
     decision = DECISIONS.fetch(choise)
   end
 
+  def points
+    rules.points(cards)
+  end
+
+  def to_s
+    name
+  end
+
   private
-  attr_reader :rules
-
-
-
+  attr_reader :rules, :name
 end
 
 

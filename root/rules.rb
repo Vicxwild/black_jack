@@ -1,9 +1,10 @@
-class Rule
+class Rules
 
   def points(cards)
     points = 0
     aces = []
     cards.each do |card|
+      #binding.irb
       if card.face.is_a?(Integer)
         points += card.face
       elsif card.face == "T"
@@ -27,7 +28,8 @@ class Rule
     dealer_points = points(dealer.cards)
     return if player_points == dealer_points
 
-    player_points > dealer_points ? player : dealer
+    player_points > dealer_points ? [player, dealer] : [dealer, player]
+
   end
 
   def cards_overflow?(cards)
