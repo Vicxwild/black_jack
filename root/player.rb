@@ -20,7 +20,7 @@ class Player
   end
 
   def bet
-    self.cash -= 10
+    self.bank -= 10
     10
   end
 
@@ -28,7 +28,7 @@ class Player
     puts "Your cards #{show_cards}, points #{rules.points(cards)}"
     puts "Press 1 to skip, to open the cards - 2, to add the card - 3"
     choise = gets.chomp.to_i
-    decision = DECISIONS.fetch(choise)
+    self.decision = DECISIONS.fetch(choise)
   end
 
   def points
@@ -39,7 +39,7 @@ class Player
     name
   end
 
-  private
+  #private
   attr_reader :rules, :name
 end
 

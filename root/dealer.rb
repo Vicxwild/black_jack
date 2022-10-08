@@ -8,7 +8,7 @@ class Dealer
   end
 
   def show_cards
-    cards.map { |card| "★" }
+    cards.map { |card| card.title } #{ |card| "★" }
   end
 
   def make_decision
@@ -17,6 +17,11 @@ class Dealer
     else
       :add
     end
+  end
+
+  def bet
+    self.bank -= 10
+    10
   end
 
   def skip_card?
