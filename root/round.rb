@@ -12,9 +12,10 @@ class Round
   def start
     (1..2).each do |round|
       hand_out_cards(player, round)
-      break if player.decision == :open # dont forget nil
+      break if player.decision == :open
       hand_out_cards(dealer, round)
-      bank = player.bet + dealer.bet
+      puts "Dealer cards #{dealer.show_stars}" if round == 1
+      bank = player.bet + dealer.bet if round == 1
     end
 
     winner,loser = rules.detect_winner(player, dealer)
@@ -45,8 +46,8 @@ class Round
 
   def anounce_results(winner, loser)
     if winner
-      puts "Winner: #{winner} #{winner.points} #{winner.show_cards}"
-      puts "Loser: #{loser} #{loser.points} #{loser.show_cards}"
+      puts "Winner: #{winner}, points #{winner.points}, cards #{winner.show_cards}"
+      puts "Loser: #{loser}, points #{loser.points}, cards #{loser.show_cards}"
     else
       puts "Draw"
     end

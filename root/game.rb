@@ -13,14 +13,17 @@ class Game
   end
 
   def game_progress
-    puts "Do you want to play again? Enter \"y\" if yes, \"n\" if no"
-    choise = gets.chomp.to_sym
-    case choise
-    when :y
-      refresh
-      new_round
-    when :n
-      exit
+    loop do
+      break if player.bank == 0 || dealer.bank == 0
+      puts "Do you want to play again? Enter \"y\" if yes, \"n\" if no"
+      choise = gets.chomp.to_sym
+      case choise
+      when :y
+       refresh
+       new_round
+      when :n
+        exit
+      end
     end
   end
 

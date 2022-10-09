@@ -1,6 +1,6 @@
 class Player
-  attr_accessor :bank, :cards, :decision
-
+  attr_accessor :bank, :decision, :cards
+  attr_reader :name, :rules, :decision
 
   DECISIONS = {
     1 => :skip,
@@ -16,7 +16,8 @@ class Player
   end
 
   def show_cards
-    cards.map { |card| card.title }
+    cards_title = cards.map { |card| card.title }
+    cards_title.join(" ")
   end
 
   def bet
@@ -38,9 +39,6 @@ class Player
   def to_s
     name
   end
-
-  #private
-  attr_reader :rules, :name
 end
 
 

@@ -1,5 +1,6 @@
 class Dealer
-  attr_accessor :bank, :cards, :make_decision, :rules
+  attr_accessor :bank, :cards
+  attr_reader :name, :rules
 
   def initialize(rules)
     @rules = rules
@@ -8,7 +9,13 @@ class Dealer
   end
 
   def show_cards
-    cards.map { |card| card.title } #{ |card| "★" }
+    cards_title = cards.map { |card| card.title }
+    cards_title.join(" ")
+  end
+
+  def show_stars
+    cards_title = cards.map { |card| "★" }
+    cards_title.join(" ")
   end
 
   def make_decision

@@ -4,7 +4,6 @@ class Rules
     points = 0
     aces = []
     cards.each do |card|
-      #binding.irb
       if card.face.is_a?(Integer)
         points += card.face
       elsif card.face == "T"
