@@ -38,9 +38,8 @@ class Game
   end
 
   def refresh
-    player.decision = nil
-    player.cards = []
-    dealer.cards = []
+    player.refresh
+    dealer.refresh
   end
 
   private

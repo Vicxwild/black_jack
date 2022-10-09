@@ -28,6 +28,10 @@ class Round
     anounce_results(winner, e.loser)
   end
 
+  private
+
+  attr_writer :bank
+
   def hand_out_cards(user, round)
     count = round == 1 ? 2 : 1
     return if round == 2 && %i[skip open].include?(user.make_decision)
@@ -54,8 +58,4 @@ class Round
       puts "Draw"
     end
   end
-
-  private
-
-  attr_writer :bank
 end

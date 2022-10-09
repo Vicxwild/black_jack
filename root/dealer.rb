@@ -1,6 +1,6 @@
 class Dealer
-  attr_accessor :bank, :cards
-  attr_reader :name, :rules
+  attr_accessor :bank
+  attr_reader :name, :rules, :cards
 
   def initialize(rules)
     @rules = rules
@@ -9,21 +9,15 @@ class Dealer
   end
 
   def show_cards
-    cards_title = cards.map(&:title)
-    cards_title.join(" ")
+    cards_title = cards.map(&:title).join(" ")
   end
 
   def show_stars
-    cards_title = cards.map { |_card| "★" }
-    cards_title.join(" ")
+    ("★ " * 2).strip
   end
 
   def make_decision
-    if skip_card?
-      :skip
-    else
-      :add
-    end
+    skip_card? ? :skip : :add
   end
 
   def bet
@@ -42,4 +36,12 @@ class Dealer
   def to_s
     self.class.to_s
   end
+
+  def refresh
+    self.cards = []
+  end
+
+  private
+
+  attr_writer :cards
 end
