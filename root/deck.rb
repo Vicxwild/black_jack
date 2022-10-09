@@ -1,8 +1,8 @@
 class Deck
   attr_reader :cards
 
-  SUITS = ["♣", "♥", "♠", "♦"]
-  FACE = [2, 3, 4, 5, 6, 7, 8, 9, 10, "V", "D", "K", "T"]
+  SUITS = ["♣", "♥", "♠", "♦"].freeze
+  FACE = [2, 3, 4, 5, 6, 7, 8, 9, 10, "V", "D", "K", "T"].freeze
 
   def initialize
     deck_creation

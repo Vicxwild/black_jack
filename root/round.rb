@@ -13,25 +13,27 @@ class Round
     (1..2).each do |round|
       hand_out_cards(player, round)
       break if player.decision == :open
+
       hand_out_cards(dealer, round)
       puts "Dealer cards #{dealer.show_stars}" if round == 1
-      bank = player.bet + dealer.bet if round == 1
+      self.bank = player.bet + dealer.bet if round == 1
     end
 
-    winner,loser = rules.detect_winner(player, dealer)
+    winner, loser = rules.detect_winner(player, dealer)
     share_prize(winner)
     anounce_results(winner, loser)
-  rescue HandOverFlow => error
-    winner = error.loser == player ? dealer : player
+  rescue HandOverFlow => e
+    winner = e.loser == player ? dealer : player
     share_prize(winner)
-    anounce_results(winner, error.loser)
+    anounce_results(winner, e.loser)
   end
 
   def hand_out_cards(user, round)
     count = round == 1 ? 2 : 1
-    return if round == 2 && %i(skip open).include?(user.make_decision)
+    return if round == 2 && %i[skip open].include?(user.make_decision)
+
     user.cards.push(*deck.cards.pop(count))
-    raise HandOverFlow.new(user) if rules.cards_overflow?(user.cards)
+    raise HandOverFlow, user if rules.cards_overflow?(user.cards)
   end
 
   def share_prize(winner)
@@ -41,7 +43,7 @@ class Round
       player.bank += bank / 2
       dealer.bank += bank / 2
     end
-    bank = 0
+    self.bank = 0
   end
 
   def anounce_results(winner, loser)
@@ -54,5 +56,6 @@ class Round
   end
 
   private
+
   attr_writer :bank
 end

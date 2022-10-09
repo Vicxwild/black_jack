@@ -9,12 +9,12 @@ class Dealer
   end
 
   def show_cards
-    cards_title = cards.map { |card| card.title }
+    cards_title = cards.map(&:title)
     cards_title.join(" ")
   end
 
   def show_stars
-    cards_title = cards.map { |card| "★" }
+    cards_title = cards.map { |_card| "★" }
     cards_title.join(" ")
   end
 

@@ -1,12 +1,12 @@
 class Player
   attr_accessor :bank, :decision, :cards
-  attr_reader :name, :rules, :decision
+  attr_reader :name, :rules
 
   DECISIONS = {
     1 => :skip,
     2 => :open,
     3 => :add
-  }
+  }.freeze
 
   def initialize(name, rules)
     @name = name
@@ -16,7 +16,7 @@ class Player
   end
 
   def show_cards
-    cards_title = cards.map { |card| card.title }
+    cards_title = cards.map(&:title)
     cards_title.join(" ")
   end
 
@@ -40,6 +40,3 @@ class Player
     name
   end
 end
-
-
-

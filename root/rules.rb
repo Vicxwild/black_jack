@@ -1,23 +1,23 @@
 class Rules
-
   def points(cards)
     points = 0
     aces = []
     cards.each do |card|
-      if card.face.is_a?(Integer)
+      case card.face
+      when Integer
         points += card.face
-      elsif card.face == "T"
+      when "T"
         aces << card
       else
         points += 10
       end
     end
     aces.each do
-      if points >= 11
-        points += 1
-      else
-        points += 11
-      end
+      points += if points >= 11
+                  1
+                else
+                  11
+                end
     end
     points
   end
@@ -28,7 +28,6 @@ class Rules
     return if player_points == dealer_points
 
     player_points > dealer_points ? [player, dealer] : [dealer, player]
-
   end
 
   def cards_overflow?(cards)
