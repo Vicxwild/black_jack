@@ -14,8 +14,9 @@ class Game
 
   def game_progress
     loop do
-      break if player.bank.zero? || dealer.bank.zero?
+      break puts "You've lost, the bank is empty!" if player.bank.zero? || dealer.bank.zero?
 
+      puts "Your balnse is #{player.bank} $"
       puts "Do you want to play again? Enter \"y\" if yes, \"n\" if no"
       choise = gets.chomp.to_sym
       player_choise(choise)

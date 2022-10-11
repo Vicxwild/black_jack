@@ -17,6 +17,7 @@ class Round
       hand_out_cards(dealer, round)
       puts "Dealer cards #{dealer.show_stars}" if round == 1
       self.bank = player.bet + dealer.bet if round == 1
+      puts "The beat is $10" if round == 1
     end
 
     winner, loser = rules.detect_winner(player, dealer)
